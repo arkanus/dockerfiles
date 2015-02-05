@@ -11,11 +11,12 @@ RUN yum install -y -q python-pip \
 					  mysql-devel \
 					  gcc \
 					  python-devel
-RUN pip install django MySQL-python gunicorn
+RUN pip install django MySQL-python gunicorn flask
+
 
 COPY supervisord_djangoapp.ini /etc/supervisord.d/djangoapp.ini
 COPY nginx_djangoapp.conf /etc/nginx/conf.d/djangoapp.conf
-
-# RUN nginx -s stopA
+COPY docker-entrypoint.sh /docker-entrypoint.sh
+# ENTRYPOINT ["/docker-entrypoint.sh"]
+# RUN nginx -s stop
 # RUN kill $(cat /var/run/supervisord.pid)
-# RUN nginx

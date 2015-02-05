@@ -1,0 +1,11 @@
+web:
+  build: .
+  command: /docker-entrypoint.sh nginx
+  volumes:
+      - .:/Code
+  links:
+   - db
+  ports:
+   - "8000:8000"
+db:
+    image: postgres:9
