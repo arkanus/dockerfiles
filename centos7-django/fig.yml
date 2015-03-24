@@ -1,11 +1,13 @@
 web:
-  build: .
-  command: /docker-entrypoint.sh nginx
-  volumes:
-      - .:/Code
-  links:
-   - db
-  ports:
-   - "8000:8000"
+    build: .
+    command: nginx
+    volumes:
+        - djangoapp:/djangoapp
+    links:
+        - db:mysql
+    ports:
+        - "8000:8000"
 db:
     image: postgres:9
+    environment:
+        MYSQL_ROOT_PASSWORD: mysecretpassword
