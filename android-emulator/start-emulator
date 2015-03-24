@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if [ $# -gt 0 ]; then
+  CMD=$1
+  PORT=5554
+  EMULATOR_BIN=emulator64-arm
+  echo "Starting emulator[$PORT]..."
+  $EMULATOR_BIN -avd test -no-skin -no-audio -no-window -port $PORT &
+  sleep 5
+  adb kill-server
+  adb start-server
+  wait-for-emulator
+  $CMD
+else
+  echo "No command is specified"
+fi
