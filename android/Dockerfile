@@ -9,8 +9,9 @@ MAINTAINER arkanus "arkanus@gmail.com"
 
 RUN apt-get update -qq
 
-# Dependencies to execute android
-RUN apt-get install -y --no-install-recommends openjdk-7-jre-headless openjdk-7-jdk git
+# Dependencies to execute android, 32 bit deps for adb
+RUN apt-get install -y --no-install-recommends openjdk-7-jre-headless openjdk-7-jdk git \
+libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1
   
 # Main Android SDK
 RUN apt-get install -y --no-install-recommends wget

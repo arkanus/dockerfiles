@@ -26,7 +26,7 @@ ADD start-emulator /usr/local/bin/
 # Create a project using gradle-2.2.1 to init the cache and projects don't have to download stuff
 # RUN mkdir -p /opt/tmp && android create project -g -v 1.0.0 -a MainActivity -k com.example.example -t android-22 -p /opt/tmp
 WORKDIR /opt
-ADD example-project.tgz .
+ADD example /opt/example
 
 RUN cd /opt/example && ./gradlew tasks
 RUN rm -rf /opt/example
