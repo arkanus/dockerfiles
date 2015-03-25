@@ -9,9 +9,11 @@ MAINTAINER arkanus "arkanus@gmail.com"
 
 # Specific android stuff for this particular build environment and emulator
 RUN echo y | android update sdk --no-ui --force -a --filter \
-build-tools-22.0.1,\
+build-tools-21.1.2,\
 android-21,\
 addon-google_apis-google-21,\
+extra-android-m2repository,\
+extra-google-m2repository,\
 sys-img-armeabi-v7a-addon-google_apis-google-21
 
 # Set up and run emulator
