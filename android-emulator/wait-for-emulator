@@ -2,6 +2,19 @@
 
 echo "Waiting for emulator to start..."
 
+# Returns a symbol for the adb getprop result
+# to use it for the wait output
+function waitsymbol {
+	if [[ $1 =~ "device offline" ]]; then
+		echo -n "o"
+	elif [[ $1 =~ "running" ]]; then
+		echo -n "r"
+	else
+		#Unknown output
+		echo -n "."
+	fi
+}
+
 bootanim=""
 failcounter=0
 until [[ "$bootanim" =~ "stopped" ]]; do
@@ -13,5 +26,6 @@ until [[ "$bootanim" =~ "stopped" ]]; do
         exit 1
       fi
    fi
+   waitsymbol $bootanim
    sleep 1
 done
